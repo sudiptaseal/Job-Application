@@ -1,54 +1,26 @@
-package com.embarkx.firstjobapp.job;
+package com.embarkx.firstjobapp.job.dto;
 
 import com.embarkx.firstjobapp.company.Company;
-import jakarta.persistence.*;
 
-@Entity
-@Table(name = "job_table")
-public class Job {
+public class JobRequestDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
     private String title;
     private String description;
-    @Column(name = "minsalary")
     private  String minSalary;
-    @Column(name = "maxsalary")
     private  String maxSalary;
     private  String location;
-
-    @ManyToOne
-    @JoinColumn(name = "company_id")
     private Company company;
 
-    public Job() {
+    public JobRequestDTO() {
     }
 
-    public Job(Long id, String title, String description, String minSalary, String maxSalary, String location, Company company) {
-        this.id = id;
+    public JobRequestDTO(String title, String description, String minSalary, String maxSalary, String location, Company company) {
         this.title = title;
         this.description = description;
         this.minSalary = minSalary;
         this.maxSalary = maxSalary;
         this.location = location;
         this.company = company;
-    }
-
-    public Company getCompany() {
-        return company;
-    }
-
-    public void setCompany(Company company) {
-        this.company = company;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getTitle() {
@@ -89,5 +61,25 @@ public class Job {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
+
+    @Override
+    public String toString() {
+        return "JobRequest{" +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", minSalary='" + minSalary + '\'' +
+                ", maxSalary='" + maxSalary + '\'' +
+                ", location='" + location + '\'' +
+                ", company=" + company +
+                '}';
     }
 }
